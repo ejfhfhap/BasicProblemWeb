@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private HttpSession httpSession;
 	
 	@GetMapping("/delete")
 	public ModelAndView setDelete(HttpSession httpSession) throws Exception {
@@ -40,7 +42,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/update")
-	public ModelAndView setUpdate(HttpSession httpSession)throws Exception{
+	public ModelAndView setUpdate()throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
 		MemberDto memberDto = (MemberDto) httpSession.getAttribute("loginInfo");
 		memberDto = memberService.getDetail(memberDto);
@@ -67,7 +69,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/myPage")
-	public ModelAndView getDetail(HttpSession httpSession) throws Exception {
+	public ModelAndView getDetail() throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		MemberDto memberDto = (MemberDto) httpSession.getAttribute("loginInfo");
@@ -85,7 +87,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/logout")
-	public ModelAndView tryLogout(HttpSession httpSession) {
+	public ModelAndView tryLogout() {
 		ModelAndView modelAndView = new ModelAndView();
 		httpSession.invalidate();
 		modelAndView.setViewName("redirect: /");
@@ -101,13 +103,12 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public ModelAndView tryLogin(MemberDto memberDto, HttpServletRequest request) throws Exception {
+	public ModelAndView tryLogin(MemberDto memberDto) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		String memberId = memberDto.getMemberId();
 		memberDto = memberService.tryLogin(memberDto);
 		if(memberDto != null) {
-			HttpSession httpSession = request.getSession();
 			httpSession.setAttribute("loginInfo", memberDto);
 			
 			modelAndView.addObject("message", "로그인에 성공 하였습니다");
@@ -144,6 +145,9 @@ public class MemberController {
 		String message;
 		
 		if(result > 0) {
+			memberDto = memberService.tryLogin(memberDto);
+			httpSession.setAttribute("loginInfo", memberDto);
+			
 			message = "등록이 완료 되었습니다";
 		}else {
 			message = "등록에 실패 하였습니다";
