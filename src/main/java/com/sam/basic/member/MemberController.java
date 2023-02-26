@@ -18,12 +18,60 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("/delete")
+	public ModelAndView setDelete(HttpSession httpSession) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		MemberDto memberDto = (MemberDto) httpSession.getAttribute("loginInfo");
+		
+		int result = 0;
+		if(memberDto != null) {
+			result = memberService.setDelete(memberDto);
+		}
+		if(result > 0) {
+			modelAndView.addObject("message", "삭제가 완료 되었습니다");
+			httpSession.invalidate();
+		}else {
+			modelAndView.addObject("message", "삭제되지 않았습니다");
+		}
+		modelAndView.addObject("url", "/");
+		
+		modelAndView.setViewName("/common/result");
+		return modelAndView;
+	}
+	
+	@GetMapping("/update")
+	public ModelAndView setUpdate(HttpSession httpSession)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		MemberDto memberDto = (MemberDto) httpSession.getAttribute("loginInfo");
+		memberDto = memberService.getDetail(memberDto);
+		
+		modelAndView.addObject("memberDto", memberDto);
+		modelAndView.setViewName("/member/update");
+		return modelAndView;
+	}
+	
+	@PostMapping("/update")
+	public ModelAndView setUpdate(MemberDto memberDto, MultipartFile image)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = memberService.setUpdate(memberDto,image);
+		if(result > 0) {
+			modelAndView.addObject("message", "수정이 완료 되었습니다");
+		}else {
+			modelAndView.addObject("message", "수정에 실패 하였습니다");
+		}
+		
+		modelAndView.addObject("url", "./myPage");
+		modelAndView.setViewName("/common/result");
+		return modelAndView;
+	}
 	
 	@GetMapping("/myPage")
 	public ModelAndView getDetail(HttpSession httpSession) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		MemberDto memberDto = (MemberDto) httpSession.getAttribute("loginInfo");
+		memberDto = memberService.getDetail(memberDto);
 		
 		if(memberDto != null) {
 			modelAndView.setViewName("/member/myPage");

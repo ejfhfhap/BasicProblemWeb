@@ -12,12 +12,26 @@
 	private String oriName; -->
   <!-- namespace = DAO클래스가 있는 패키지명 -->
   <mapper namespace="com.sam.basic.member"> 
-  
+  	
+  	<update id="setUpdate" parameterType="MemberDto">
+  		UPDATE MEMBER
+  		<trim prefix="SET" suffixOverrides=",">
+  			memberId = memberId,
+  			<if test="pw != ''">pw = #{pw},</if>
+  			<if test="myIntro != ''">myIntro = #{myIntro},</if>
+  			<if test="email != ''">email = #{email},</if>
+  			<if test="fileName != null">fileName = #{fileName},</if>
+  			<if test="oriName != null">oriName = #{oriName}</if>
+  		</trim>
+  		WHERE memberId = #{memberId}
+  	</update>
   	<insert id="setInsert" parameterType="MemberDto">
   		INSERT INTO MEMBER VALUES(#{memberId},1,#{pw},#{myIntro},#{email},sysdate,#{fileName},#{oriName})
   	</insert>
   	<select id="getDetail" parameterType="MemberDto" resultType="MemberDto">
   		SELECT * FROM MEMBER WHERE memberId = #{memberId}
   	</select>
-  	
+  	<delete id="setDelete" parameterType="MemberDto">
+  		DELETE MEMBER WHERE memberId = #{memberId}
+  	</delete>
   </mapper>
