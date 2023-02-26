@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--   	private String memberId;
+	private Integer roleNum;
+	private String pw;
+	private String myIntro;
+	private String email;
+	private Date makeDate;
+	private String fileName;
+	private String oriName; -->
+  <!-- namespace = DAO클래스가 있는 패키지명 -->
+  <mapper namespace="com.sam.basic.member"> 
+  
+  	<insert id="setInsert" parameterType="MemberDto">
+  		INSERT INTO MEMBER VALUES(#{memberId},1,#{pw},#{myIntro},#{email},sysdate,#{fileName},#{oriName})
+  	</insert>
+  	<select id="getDetail" parameterType="MemberDto" resultType="MemberDto">
+  		SELECT * FROM MEMBER WHERE memberId = #{memberId}
+  	</select>
+  	
+  </mapper>
