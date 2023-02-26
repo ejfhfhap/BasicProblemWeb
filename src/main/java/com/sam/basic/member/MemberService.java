@@ -24,9 +24,8 @@ public class MemberService{
 	public int setInsert(MemberDto dto, MultipartFile image) throws Exception {
 		// TODO Auto-generated method stub
 		ServletContext servletContext = httpSession.getServletContext();
-		String realPath = servletContext.getRealPath("/resourecs/upload/member");
+		String realPath = servletContext.getRealPath("/resources/upload/member");
 		String fileName = FileManager.saveFile(image, realPath);
-		
 		System.out.println(realPath);
 		dto.setFileName(fileName);
 		dto.setOriName(image.getOriginalFilename());

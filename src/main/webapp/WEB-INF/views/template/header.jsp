@@ -15,6 +15,9 @@
 	        </li>
 	        
 	        <c:if test="${not empty loginInfo}">
+	        	 <li class="nav-item">
+              		 <a class="nav-link" href="/member/myPage">마이페이지</a>
+       			 </li>
   		       	 <li class="nav-item">
               		 <a class="nav-link" href="/member/logout">로그아웃</a>
        			 </li>

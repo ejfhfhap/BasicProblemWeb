@@ -11,6 +11,11 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
+<img src="/resources/upload/member/${loginInfo.fileName}">
+
+<h5>아이디: ${loginInfo.memberId}</h5>
+<h5>소개: ${loginInfo.myIntro}</h5>
+<h5>이메일: ${loginInfo.email}</h5>
 
 
 <c:import url="../template/common_body.jsp"></c:import>
