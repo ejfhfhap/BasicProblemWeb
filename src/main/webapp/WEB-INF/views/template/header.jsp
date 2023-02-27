@@ -8,10 +8,16 @@
 	    <div class="collapse navbar-collapse" id="navbarNav">
 	      <ul class="navbar-nav">
 	        <li class="nav-item">
-	             <a class="nav-link active" aria-current="page" href="/">홈페이지</a>
-	        </li>
-	        <li class="nav-item">
-                 <a class="nav-link" href="/member/agree">회원가입</a>
+                 <div class="dropdown">
+					  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					    문제 보기
+					  </button>
+					  <ul class="dropdown-menu">
+					    <li><a class="dropdown-item" href="/problem/list">전체 문제</a></li>
+					    <li><a class="dropdown-item" href="#">Another action</a></li>
+					    <li><a class="dropdown-item" href="#">Something else here</a></li>
+					  </ul>
+				  </div>
 	        </li>
 	        
 	        <c:if test="${not empty loginInfo}">
@@ -27,7 +33,9 @@
               		 <a class="nav-link" href="/member/login">로그인</a>
        			 </li>
 	        </c:if>
-	        
+   	        <li class="nav-item">
+                 <a class="nav-link" href="/member/agree">회원가입</a>
+	        </li>
 	      </ul>
 	    </div>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

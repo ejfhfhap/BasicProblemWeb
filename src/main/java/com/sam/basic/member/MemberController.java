@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/member/**")
 public class MemberController {
 	@Autowired
 	private MemberService memberService;

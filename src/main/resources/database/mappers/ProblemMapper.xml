@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!--  	private Integer problemListId;
+	private String title;
+	private String content;
+	private Integer goodCnt;
+	private Integer badCnt;
+	private String writer;
+	private String answer;
+	private Integer cnt; -->
+  <mapper namespace="com.sam.basic.problem">
+  	<sql id="searchCondition">
+  		WHERE 
+  		<choose>
+  			<when test="searchKind == 'problemListId'">
+  				problemListId LIKE '%' || #{searchContent} || '%'
+  			</when>
+  			<when test="searchKind == 'title'">
+  				title LIKE '%' || #{searchContent} || '%'
+  			</when>
+  			<otherwise>
+  				writer LIKE '%' || #{searchContent} || '%'
+  			</otherwise>
+  		</choose>	
+  	</sql>
+  
+  	<select id="getList" parameterType="Pager" resultType="ProblemDto">
+  		SELECT * FROM
+		(SELECT ROWNUM R,A.* FROM 
+		(SELECT * FROM PROBLEM <include refid="searchCondition"></include>) A)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	<select id="getListCnt" parameterType="Pager" resultType="Integer">
+  		SELECT COUNT(problemListId) FROM PROBLEM
+  		<include refid="searchCondition"></include>
+  	</select>
+  </mapper>
