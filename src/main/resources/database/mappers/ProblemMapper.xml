@@ -2,14 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <!--  	private Integer problemListId;
-	private String title;
-	private String content;
-	private Integer goodCnt;
-	private Integer badCnt;
-	private String writer;
-	private String answer;
-	private Integer cnt; -->
   <mapper namespace="com.sam.basic.problem">
   	<sql id="searchCondition">
   		WHERE 
@@ -36,4 +28,56 @@
   		SELECT COUNT(problemListId) FROM PROBLEM
   		<include refid="searchCondition"></include>
   	</select>
+  	
+  	<select id="getDetail" parameterType="ProblemDto" resultMap="getProblemJoinImage">
+  		SELECT * FROM PROBLEM P 
+		LEFT JOIN PROBLEMIMAGE P2 ON p.PROBLEMLISTID = p2.PROBLEMLISTID 
+		WHERE P.PROBLEMLISTID = #{problemListId}
+  	</select>
+  	<resultMap type="ProblemDto" id="getProblemJoinImage">
+  		<id column="problemListId" property="problemListId"/>
+  		<result column="title" property="title"/>
+  		<result column="content" property="content"/>
+  		<result column="goodCnt" property="goodCnt"/>
+  		<result column="badCnt" property="badCnt"/>
+  		<result column="writer" property="writer"/>
+  		<result column="answer" property="answer"/>
+  		<result column="cnt" property="cnt"/>
+  		<result column="difficulty" property="difficulty"/>
+  		<collection javaType="List" ofType="ProblemImageDto" property="problemImageDtos">
+  			<id column="problemImageId" property="problemImageId"/>
+  			<result column="problemListId" property="problemListId"/>
+  			<result column="imageName" property="imageName"/>
+  			<result column="oriImageName" property="oriImageName"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<insert id="setProblemInsert" parameterType="ProblemDto">
+  		<selectKey order="BEFORE" keyProperty="problemListId" resultType="Integer">
+  			SELECT SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO PROBLEM VALUES(#{problemListId},#{title},#{content},#{answer},#{difficulty},#{writer},
+  		0,0,0)
+  	</insert>
+  	<insert id="setProblemImageInsert" parameterType="ProblemImageDto">
+  		INSERT INTO PROBLEMIMAGE VALUES(SEQ.NEXTVAL,#{problemListId},#{imageName},#{oriImageName})
+  	</insert>
+  	<select id="getImageDetail" parameterType="ProblemImageDto" resultType="ProblemImageDto">
+  		SELECT * FROM PROBLEMIMAGE WHERE problemImageId = #{problemImageId}
+  	</select>
   </mapper>
+  <!--  	private Integer problemListId;
+	private String title;
+	private String content;
+	private String answer;
+	private String difficulty;
+	private String writer;
+	private Integer goodCnt;
+	private Integer badCnt;
+	private Integer cnt;
+	private List<ProblemImageDto> problemImageDtos; -->
+	
+	<!-- 	private Integer problemImageId;
+	private Integer problemListId;
+	private String imageName;
+	private String oriImageName; -->

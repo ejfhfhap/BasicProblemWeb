@@ -24,15 +24,15 @@
     </tr>
   </thead>
   <tbody class="table-group-divider">
-  	<c:forEach items="${dtos}" var="dto">
+  	<c:forEach items="${problemDtos}" var="problemDto">
   		<tr>
-  			<td scope="row">${dto.problemListId}</td>
-  			<td>${dto.difficulty}</td>
-  			<td>${dto.title}</td>
-  			<td>${dto.goodCnt }</td>
-  			<td>${dto.badCnt }</td>
-  			<td>${dto.cnt }</td>
-  			<td>${dto.writer }</td>
+  			<td scope="row">${problemDto.problemListId}</td>
+  			<td>${problemDto.difficulty}</td>
+  			<td><a href = "./detail?problemListId=${problemDto.problemListId}">${problemDto.title}</a></td>
+  			<td>${problemDto.goodCnt }</td>
+  			<td>${problemDto.badCnt }</td>
+  			<td>${problemDto.cnt }</td>
+  			<td>${problemDto.writer }</td>
   		</tr>
   	</c:forEach>
   </tbody>
@@ -82,6 +82,8 @@
     <button type="submit" class="btn btn-primary mb-3">검색하기</button>
   </div>
 </form>
+
+<a href="./insert">추가하기</a>
 
 <c:import url="../template/common_body.jsp"></c:import>
 </body>

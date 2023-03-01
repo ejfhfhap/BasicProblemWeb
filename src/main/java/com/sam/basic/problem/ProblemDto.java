@@ -1,5 +1,7 @@
 package com.sam.basic.problem;
 
+import java.util.List;
+
 public class ProblemDto {
 	private Integer problemListId;
 	private String title;
@@ -10,7 +12,15 @@ public class ProblemDto {
 	private Integer goodCnt;
 	private Integer badCnt;
 	private Integer cnt;
+	private List<ProblemImageDto> problemImageDtos;
 	
+	
+	public List<ProblemImageDto> getProblemImageDtos() {
+		return problemImageDtos;
+	}
+	public void setProblemImageDtos(List<ProblemImageDto> problemImageDtos) {
+		this.problemImageDtos = problemImageDtos;
+	}
 	public Integer getProblemListId() {
 		return problemListId;
 	}
