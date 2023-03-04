@@ -159,4 +159,19 @@ public class MemberController {
 		return modelAndView;
 		
 	}
+	
+	@PostMapping("/checkUniqueId")
+	public ModelAndView checkUniqueId(MemberDto memberDto) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		memberDto = memberService.getDetail(memberDto);
+		if(memberDto == null) {
+			modelAndView.addObject("result", true);
+		}else {
+			modelAndView.addObject("result", false);
+		}
+		
+		modelAndView.setViewName("/ajax/checkUniqueId");
+		return modelAndView;
+	}
 }

@@ -65,6 +65,15 @@
   	<select id="getImageDetail" parameterType="ProblemImageDto" resultType="ProblemImageDto">
   		SELECT * FROM PROBLEMIMAGE WHERE problemImageId = #{problemImageId}
   	</select>
+  	<update id="setProblemCntAdd" parameterType="ProblemDto">
+  		UPDATE PROBLEM SET cnt = cnt + 1 WHERE problemListId = #{problemListId}
+  	</update>
+  	<update id="setGoodCntAdd" parameterType="ProblemDto">
+  		UPDATE PROBLEM SET goodCnt = goodCnt + 1 WHERE problemListId = #{problemListId}
+  	</update>
+  	<update id="setBadCntAdd" parameterType="ProblemDto">
+  		UPDATE PROBLEM SET badCnt = badCnt + 1 WHERE problemListId = #{problemListId}
+  	</update>
   </mapper>
   <!--  	private Integer problemListId;
 	private String title;

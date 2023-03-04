@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sam.basic.util.Pager;
 
+//@CrossOrigin(origins="*", allowedHeaders = "*")
 @Controller
 @RequestMapping("/problem/**")
 public class ProblemController {
@@ -83,4 +85,23 @@ public class ProblemController {
 		return modelAndView;
 	}
 	
+	@PostMapping("/goodCntAdd")
+	public ModelAndView setGoodCntAdd(ProblemDto problemDto) {
+		ModelAndView modelAndView = new ModelAndView();
+		problemDto = problemService.setGoodCntAdd(problemDto);
+		modelAndView.addObject("result", problemDto.getGoodCnt());
+		
+		modelAndView.setViewName("/ajax/result");
+		return modelAndView;
+	}
+	
+	@PostMapping("/badCntAdd")
+	public ModelAndView setBadCntAdd(ProblemDto problemDto) {
+		ModelAndView modelAndView = new ModelAndView();
+		problemDto = problemService.setBadCntAdd(problemDto);
+		modelAndView.addObject("result", problemDto.getBadCnt());
+		
+		modelAndView.setViewName("/ajax/result");
+		return modelAndView;
+	}
 }

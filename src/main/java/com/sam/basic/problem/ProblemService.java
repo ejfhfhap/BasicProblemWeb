@@ -29,6 +29,7 @@ public class ProblemService {
 		return problemDao.getList(pager); 
 	}
 	public ProblemDto getDetail(ProblemDto problemDto) {
+		problemDao.setProblemCntAdd(problemDto);
 		return problemDao.getDetail(problemDto);
 	}
 	public int setProblemInsert(ProblemDto problemDto, MultipartFile[] images) throws Exception {
@@ -54,5 +55,14 @@ public class ProblemService {
 	}
 	public ProblemImageDto getImageDetail(ProblemImageDto problemImageDto) {
 		return problemDao.getImageDetail(problemImageDto);
+	}
+	
+	public ProblemDto setGoodCntAdd(ProblemDto problemDto) {
+		int result = problemDao.setGoodCntAdd(problemDto);
+		return problemDao.getDetail(problemDto);
+	}
+	public ProblemDto setBadCntAdd(ProblemDto problemDto) {
+		int result = problemDao.setBadCntAdd(problemDto);
+		return problemDao.getDetail(problemDto);
 	}
 }

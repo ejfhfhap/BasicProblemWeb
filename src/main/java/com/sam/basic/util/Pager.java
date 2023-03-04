@@ -1,6 +1,16 @@
 package com.sam.basic.util;
 
 public class Pager {
+	private Integer problemListId;
+	
+	public Integer getProblemListId() {
+		return problemListId;
+	}
+	public void setProblemListId(Integer problemListId) {
+		this.problemListId = problemListId;
+	}
+
+	// ---------------------------- 페이저 작업
 	private Integer totalDataCnt;
 	private String searchKind;
 	private String searchContent;
