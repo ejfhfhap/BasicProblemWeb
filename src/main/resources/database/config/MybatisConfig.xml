@@ -11,8 +11,10 @@
   	 	<typeAlias type="com.sam.basic.problem.ProblemDto" alias="ProblemDto"/>
 	 	<typeAlias type="com.sam.basic.problem.ProblemImageDto" alias="ProblemImageDto"/>
 	 	
+	 	<typeAlias type="com.sam.basic.comment.CommentDto" alias="CommentDto"/>
 	 	
   	 	<typeAlias type="com.sam.basic.util.Pager" alias="Pager"/>
   	 	<typeAlias type="java.lang.Integer" alias="Integer"/>
+  	 	<typeAlias type="java.lang.String" alias="String"/>
    </typeAliases>
  </configuration>

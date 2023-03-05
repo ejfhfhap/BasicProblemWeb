@@ -33,4 +33,22 @@ public class ProblemDao {
 	public ProblemImageDto getImageDetail(ProblemImageDto problemImageDto) {
 		return sqlSession.selectOne(NAMESPACE + "getImageDetail", problemImageDto);
 	}
+	public int setProblemCntAdd(ProblemDto problemDto) {
+		return sqlSession.update(NAMESPACE + "setProblemCntAdd", problemDto);
+	}
+	public int setGoodCntAdd(ProblemDto problemDto) {
+		return sqlSession.update(NAMESPACE + "setGoodCntAdd",problemDto);
+	}
+	public int setBadCntAdd(ProblemDto problemDto) {
+		return sqlSession.update(NAMESPACE + "setBadCntAdd",problemDto);
+	}
+	public ProblemDto getProblemTryMemberDetail(ProblemDto problemDto) {
+		return sqlSession.selectOne(NAMESPACE + "getProblemTryMemberDetail", problemDto);
+	}
+	public int setProblemTryMemberUpdate(ProblemDto problemDto) {
+		return sqlSession.update(NAMESPACE + "setProblemTryMemberUpdate", problemDto);
+	}
+	public int setProblemTryMemberInsert(ProblemDto problemDto) {
+		return sqlSession.insert(NAMESPACE + "setProblemTryMemberInsert", problemDto);
+	}
 }

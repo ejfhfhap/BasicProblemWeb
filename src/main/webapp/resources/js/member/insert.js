@@ -11,6 +11,24 @@ const submitForm = document.getElementById('submitForm');
 
 let checks = [0,0,0];
 
+let checkUniqueId = (memberId)=>{
+    let xhttp = new XMLHttpRequest();
+    xhttp.open('POST','./checkUniqueId');
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("memberId=" + memberId);
+
+    xhttp.addEventListener('readystatechange', ()=>{
+        if(xhttp.readyState == XMLHttpRequest.DONE && xhttp.status == 200){
+            if(xhttp.responseText.trim() == 'true'){
+                // idMsg.innerHTML = '이것은 좋은 아이디';
+            }else{
+                idMsg.innerHTML = '이것은 중복된 아이디';
+                checks[0] = 0;
+            }
+        }
+    })
+}
+
 inputId.addEventListener('blur',()=>{
     let id = inputId.value;
     if(id != ''){
@@ -20,6 +38,9 @@ inputId.addEventListener('blur',()=>{
         idMsg.innerHTML = "아이디를 입력 해 주세요";
         checks[0] = 0;
     }
+    // return true, false
+    checkUniqueId(inputId.value);
+
 })
 
 inputPassword1.addEventListener('blur',()=>{

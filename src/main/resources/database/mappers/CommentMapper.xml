@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--   	private Integer commentId;
+	private Integer problemListId;
+	private String content;
+	private Integer goodCnt;
+	private Integer badCnt;
+	private String writer; -->
+ <mapper namespace="com.sam.basic.comment">
+
+ 	<select id="getList" parameterType="Pager" resultType="CommentDto">
+ 		SELECT * 
+		FROM (SELECT ROWNUM R,A.*
+		FROM (SELECT * FROM COMMENT1) A)
+		WHERE problemListId = #{problemListId} AND
+ 			  R BETWEEN #{startRow} AND #{lastRow}
+ 	</select>
+ 	<select id="getListCnt" parameterType="Pager" resultType="Integer">
+ 		SELECT COUNT(*) FROM COMMENT1
+		WHERE problemListId = #{problemListId}
+ 	</select>
+ 	
+ 	<insert id="setInsert" parameterType="CommentDto">
+ 		INSERT INTO COMMENT1 VALUES(SEQ.NEXTVAL,#{problemListId},#{content},0,0,#{writer})
+ 	</insert>
+ </mapper>
