@@ -65,4 +65,36 @@ public class ProblemService {
 		int result = problemDao.setBadCntAdd(problemDto);
 		return problemDao.getDetail(problemDto);
 	}
+	
+	// problemListId, answer
+	public boolean setAnsSubmit(ProblemDto problemDto) {
+		// 사용자 이름 세팅
+		MemberDto memberDto = (MemberDto)httpSession.getAttribute("loginInfo");
+		problemDto.setMemberId(memberDto.getMemberId());
+		
+		// 정답과 이전에 시도한 멤버유무
+		String answer = problemDao.getDetail(problemDto).getAnswer();
+		ProblemDto isTryMember = problemDao.getProblemTryMemberDetail(problemDto);
+		
+		// 정답체크
+		if(answer.equals(problemDto.getAnswer())) {
+			problemDto.setIsSolve(1);
+			// 시도한적이 없다면 추가하기
+			if(isTryMember == null) {
+				problemDao.setProblemTryMemberInsert(problemDto);
+			}else {
+				problemDao.setProblemTryMemberUpdate(problemDto);
+			}
+			return true;
+		}
+		// 틀린경우
+		else {
+			// 풀었던 적이 없다면 틀린사람 체크
+			if(isTryMember == null) {
+				problemDto.setIsSolve(2);
+				problemDao.setProblemTryMemberInsert(problemDto);
+			}
+			return false;
+		}
+	}
 }

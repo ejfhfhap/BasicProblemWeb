@@ -15,6 +15,13 @@
 <h2>내용 ${problemDto.content}</h2>
 <h2>정답 ${problemDto.answer}</h2>
 <h2>난이도 ${problemDto.difficulty}</h2>
+
+<form action="./ansSubmit" method="post">
+	<input type="hidden" name="problemListId" value="${problemDto.problemListId }">
+	정답<input type="text" name="answer">
+	<button type="submit">제출하기</button>
+</form>
+
 <h2>추천 수 <h2 id="goodCnt">${problemDto.goodCnt}</h2></h2>
 <h2>비추천 수 <h2 id="badCnt">${problemDto.badCnt}</h2></h2>
 

@@ -14,7 +14,6 @@ public class ProblemDto {
 	private Integer cnt;
 	private List<ProblemImageDto> problemImageDtos;
 	
-	
 	public List<ProblemImageDto> getProblemImageDtos() {
 		return problemImageDtos;
 	}
@@ -76,5 +75,21 @@ public class ProblemDto {
 		this.cnt = cnt;
 	}
 	
+	// -------- 번외
+	private String memberId;
+	private Integer isSolve;
+	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public Integer getIsSolve() {
+		return isSolve;
+	}
+	public void setIsSolve(Integer isSolve) {
+		this.isSolve = isSolve;
+	}
 	
 }

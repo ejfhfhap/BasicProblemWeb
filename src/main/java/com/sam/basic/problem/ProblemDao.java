@@ -42,4 +42,13 @@ public class ProblemDao {
 	public int setBadCntAdd(ProblemDto problemDto) {
 		return sqlSession.update(NAMESPACE + "setBadCntAdd",problemDto);
 	}
+	public ProblemDto getProblemTryMemberDetail(ProblemDto problemDto) {
+		return sqlSession.selectOne(NAMESPACE + "getProblemTryMemberDetail", problemDto);
+	}
+	public int setProblemTryMemberUpdate(ProblemDto problemDto) {
+		return sqlSession.update(NAMESPACE + "setProblemTryMemberUpdate", problemDto);
+	}
+	public int setProblemTryMemberInsert(ProblemDto problemDto) {
+		return sqlSession.insert(NAMESPACE + "setProblemTryMemberInsert", problemDto);
+	}
 }

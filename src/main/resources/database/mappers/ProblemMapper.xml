@@ -74,6 +74,15 @@
   	<update id="setBadCntAdd" parameterType="ProblemDto">
   		UPDATE PROBLEM SET badCnt = badCnt + 1 WHERE problemListId = #{problemListId}
   	</update>
+  	<select id="getProblemTryMemberDetail" parameterType="ProblemDto" resultType="ProblemDto">
+  		SELECT * FROM ProblemTryMember WHERE memberId = #{memberId} AND problemListId = #{problemListId}
+  	</select>
+  	<update id="setProblemTryMemberUpdate" parameterType="ProblemDto">
+  		UPDATE ProblemTryMember SET isSolve = #{isSolve} WHERE memberId = #{memberId} AND problemListId = #{problemListId}
+  	</update>
+  	<insert id="setProblemTryMemberInsert" parameterType="ProblemDto">
+  		INSERT INTO ProblemTryMember VALUES(#{memberId},#{problemListId},#{isSolve})
+  	</insert>
   </mapper>
   <!--  	private Integer problemListId;
 	private String title;

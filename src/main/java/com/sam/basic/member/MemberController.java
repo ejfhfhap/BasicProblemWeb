@@ -174,4 +174,6 @@ public class MemberController {
 		modelAndView.setViewName("/ajax/checkUniqueId");
 		return modelAndView;
 	}
+	
+	
 }

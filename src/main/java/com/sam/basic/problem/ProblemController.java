@@ -104,4 +104,20 @@ public class ProblemController {
 		modelAndView.setViewName("/ajax/result");
 		return modelAndView;
 	}
+	
+	@PostMapping("/ansSubmit")
+	public ModelAndView setAnsSubmit(ProblemDto problemDto) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		boolean isSolve = problemService.setAnsSubmit(problemDto);
+		if(isSolve == true) {
+			modelAndView.addObject("message", "정답 입니다!!");
+		}else {
+			modelAndView.addObject("message", "오답 입니다!!");
+		}
+		
+		modelAndView.addObject("url", "./detail?problemListId=" + problemDto.getProblemListId());
+		modelAndView.setViewName("/common/result");
+		return modelAndView;
+	}
 }
