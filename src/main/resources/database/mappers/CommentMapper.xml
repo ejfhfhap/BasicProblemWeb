@@ -26,4 +26,10 @@
  	<insert id="setInsert" parameterType="CommentDto">
  		INSERT INTO COMMENT1 VALUES(SEQ.NEXTVAL,#{problemListId},#{content},0,0,#{writer})
  	</insert>
+ 	<delete id="setDelete" parameterType="CommentDto">
+ 		DELETE COMMENT1 WHERE commentId = #{commentId}
+ 	</delete>
+ 	<update id="setUpdate" parameterType="CommentDto">
+ 		UPDATE COMMENT1 SET content = #{content} WHERE commentId = #{commentId} 
+ 	</update>
  </mapper>

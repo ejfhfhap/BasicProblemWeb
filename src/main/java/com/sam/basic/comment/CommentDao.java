@@ -32,12 +32,12 @@ public class CommentDao{
 
 	public int setUpdate(CommentDto dto) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE + "setUpdate", dto);
 	}
 
 	public int setDelete(CommentDto dto) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE + "setDelete", dto);
 	}
 	public int getListCnt(Pager pager)throws Exception{
 		return sqlSession.selectOne(NAMESPACE + "getListCnt", pager);

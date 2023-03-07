@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/common_header.jsp"/>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -30,7 +32,7 @@
 	
 	<div class="col-md-4">
     <label for="content" class="form-label">내용</label>
-    <input type="text" class="form-control" id="content" name="content" required>
+    <textarea type="text" class="form-control" id="content" name="content" required></textarea>
     <div class="valid-feedback">
       Looks good!
     </div>
@@ -65,5 +67,8 @@
 </form>
 
 <c:import url="../template/common_body.jsp"></c:import>
+<script>
+  $('#content').summernote();
+</script>
 </body>
 </html>

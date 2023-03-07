@@ -11,12 +11,14 @@
   	</tr>
   </thead>
   <tbody>
-  	<c:forEach items="${dtos}" var="dto">
+  	<c:forEach items="${dtos}" var="dto" varStatus="i">
   		<tr>
-			<td>${dto.content}</td>
+			<td id="oriContent${dto.commentId}">${dto.content}</td>
 			<td>${dto.goodCnt}</td>
 			<td>${dto.badCnt}</td>
 			<td>${dto.writer}</td>
+			<td><button type="button" class="btn btn-primary del" data-commentId="${dto.commentId}">DELETE</button></td>
+			<td><button type="button" class="btn btn-primary update" data-commentId="${dto.commentId}" data-bs-toggle="modal" data-bs-target="#exampleModal">UPDATE</button></td>
 		<tr>
 	</c:forEach>
   </tbody>

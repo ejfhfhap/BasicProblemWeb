@@ -48,4 +48,26 @@ public class CommentController {
 		modelAndView.setViewName("/common/result");
 		return modelAndView;
 	}
+	
+	@PostMapping("/delete")
+	public ModelAndView setDelete(CommentDto commentDto)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		
+	//	System.out.println(commentDto.getCommentId());
+		int result = commentService.setDelete(commentDto);
+		
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/ajax/result");
+		return modelAndView;
+	}
+	
+	@PostMapping("/update")
+	public ModelAndView setUpdate(CommentDto commentDto)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = commentService.setUpdate(commentDto);
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/ajax/result");
+		return modelAndView;
+	}
 }

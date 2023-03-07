@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 <c:import url="../template/common_header.jsp"></c:import>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-
+<div id="datas" hidden></div>
 <h2>제목 ${problemDto.title}</h2>
 <h2>내용 ${problemDto.content}</h2>
 <h2>정답 ${problemDto.answer}</h2>
@@ -42,11 +43,34 @@
 </form>
 
 <div id="commentList">
-
 </div>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="contentUpdateForm" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="contentUpdateForm">Modal title</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="form-floating">
+			<textarea class="form-control" placeholder="Leave a comment here" id="updatedContent"></textarea>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">Close</button>
+		  <button type="button" class="btn btn-primary" id="updateBtn">수정하기</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 
 <script src="/resources/js/problem/detail.js"></script>
 <c:import url="../template/common_body.jsp"></c:import>
+
 </body>
 </html>

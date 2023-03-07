@@ -20,4 +20,10 @@ public class CommentService {
 	public int setInsert(CommentDto commentDto)throws Exception{
 		return commentDao.setInsert(commentDto);
 	}
+	public int setDelete(CommentDto commentDto)throws Exception{
+		return commentDao.setDelete(commentDto);
+	}
+	public int setUpdate(CommentDto commentDto)throws Exception{
+		return commentDao.setUpdate(commentDto);
+	}
 }
